@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import s from "../Dialogs.module.css";
+import s from "./DialogItem.module.css";
 
 const DialogItem = (props) => {
 
@@ -7,7 +7,12 @@ const DialogItem = (props) => {
     return (
         <div className={s.dialog + ' ' + s.active}>
             <NavLink to={path}>
-                {props.name}
+                <div>
+                    <img src={props.url}></img>
+                </div>
+                <div>
+                    {props.name}
+                </div>
             </NavLink>
         </div >
     )

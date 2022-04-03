@@ -1,0 +1,4 @@
+.blockFriends {
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr;
+}

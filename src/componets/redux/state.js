@@ -1,14 +1,18 @@
+let rerenderEntireTree = () => {
+  console.log('State changed');
+}
 
 let state = {
 
     profilePage: {
       postsData:[
-        { id: 1, message: "Hi, Max, What's up ?", likesCount: "12" },
-        { id: 2, message: "Hi, Sveta, How are you ?", likesCount: "24" },
-        { id: 3, message: "Hi, Nika", likesCount: "13" },
-        { id: 3, message: "Hi", likesCount: "56" },
-        { id: 3, message: "Yo", likesCount: "13" },
+        { id: 1, message: "Hi, Max, What's up ?", likesCount: 3 },
+        { id: 2, message: "Hi, Sveta, How are you ?", likesCount: 11 },
+        { id: 3, message: "Hi, Nika", likesCount: 4 },
+        { id: 3, message: "Hi", likesCount: 32 },
+        { id: 3, message: "Yo", likesCount: 12 },
       ],
+      newPostText:"It-kamustra.com",
     },
     messagesPage:{
         dialogsData:[
@@ -25,6 +29,7 @@ let state = {
           { id: 2, message: "What's up ?" },
           { id: 3, message: "Yo" },
         ],
+      newMessageText:"Enter your Massage",  
     },
    sidebar:{
       friendsData:[
@@ -34,5 +39,50 @@ let state = {
       ],
    },
 }
+
+window.state = state; 
+
+export let addPost = () => {
+
+  let newPost ={
+    id: 5,
+    message: state.profilePage.newPostText,
+    likesCount:21,
+  }
+  state.profilePage.postsData.push(newPost);
+  state.profilePage.newPostText = '';
+  rerenderEntireTree(state);
+}
+
+export let updateNewPostText = (newText) => {
+
+  state.profilePage.newPostText = newText;
+  
+  rerenderEntireTree(state);
+}
+
+export let addMessage = () => {
+
+  let newMessage ={
+    id: 5,
+    message: state.messagesPage.newMessageText,
+  }
+  state.messagesPage.messagesData.push(newMessage);
+  state.messagesPage.newMessageText = '';
+  
+  rerenderEntireTree(state);
+}
+
+export let updateNewMessage= (newText) => {
+
+  state.messagesPage.newMessageText = newText;
+  
+  rerenderEntireTree(state);
+}
+
+export const subscribe = (observer) => {
+  rerenderEntireTree = observer; //паттерн наблюдатель // publisher-subscriber
+}
+
 
 export default state;

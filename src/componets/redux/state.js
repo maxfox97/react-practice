@@ -1,8 +1,10 @@
 let rerenderEntireTree = () => {
-  console.log('State changed');
-}
 
-let state = {
+}
+export let store = {
+
+  
+  state : {
 
     profilePage: {
       postsData:[
@@ -38,51 +40,58 @@ let state = {
         {id: 3, name:"Sveta", url:"https://previews.123rf.com/images/artemstepanov/artemstepanov1606/artemstepanov160600062/57844959-vektor-weibliches-gesicht-avatar-schablone-piktogramm-taste-rund-trendy-flache-symbol-mit-frauen-f%C3%BCr.jpg"},
       ],
    },
-}
-
-window.state = state; 
-
-export let addPost = () => {
-
-  let newPost ={
+},
+ getState(){
+   return this.state;
+ },
+ addPost ()  {
+  
+  let newPost = {
     id: 5,
-    message: state.profilePage.newPostText,
+    message: this.newPostText,
     likesCount:21,
   }
-  state.profilePage.postsData.push(newPost);
-  state.profilePage.newPostText = '';
-  rerenderEntireTree(state);
-}
-
-export let updateNewPostText = (newText) => {
-
-  state.profilePage.newPostText = newText;
   
-  rerenderEntireTree(state);
-}
+  store.state.profilePage.postsData.push(newPost);
+  store.state.profilePage.newPostText = ' ';
 
-export let addMessage = () => {
+  rerenderEntireTree(store.getState);
+  
+},
 
-  let newMessage ={
+updateNewPostText(newText) {
+  
+  store.state.profilePage.newPostText = newText;
+  
+  rerenderEntireTree(store.getState);
+},
+
+addMessage ()  {
+
+  let newMessage = {
     id: 5,
-    message: state.messagesPage.newMessageText,
+    message: this.messagesPage.newMessageText,
   }
-  state.messagesPage.messagesData.push(newMessage);
-  state.messagesPage.newMessageText = '';
+
+  store.state.messagesPage.messagesData.push(newMessage);
+  store.state.messagesPage.newMessageText = '';
   
-  rerenderEntireTree(state);
-}
+  rerenderEntireTree(store.getState);
+},
 
-export let updateNewMessage= (newText) => {
-
-  state.messagesPage.newMessageText = newText;
+updateNewMessage (newText)  {
   
-  rerenderEntireTree(state);
-}
+  this.messagesPage.newMessageText = newText;
+  
+  rerenderEntireTree(store.getState);
+},
 
-export const subscribe = (observer) => {
+subscribe(observer) {
   rerenderEntireTree = observer; //паттерн наблюдатель // publisher-subscriber
+},
+
+
 }
 
 
-export default state;
+

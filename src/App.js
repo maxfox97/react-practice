@@ -13,22 +13,22 @@ const App = (props) => {
   return (
     <div className="app-wrapper">
      <Header />
-     <Navbar state={props.store.state.sidebar}/>
+     <Navbar state={props.state.sidebar}/>
      <div className="app-wrapper-content" >
       <Routes>
         <Route path="/dialogs" element={
            <Dialogs 
-            messagesPage={props.store.state.messagesPage}
-            addMessage={props.store.addMessage}
-            updateNewMessage={props.store.updateNewMessage}
-            newMessageText = {props.store.state.messagesPage.newMessageText}
+            messagesPage={props.state.messagesPage}
+            addMessage={props.addMessage}
+            updateNewMessage={props.updateNewMessage}
+            newMessageText = {props.state.messagesPage.newMessageText}
             />}/>
         <Route path="/profile" element={ 
           <Profile 
-            profilePage={props.store.state.profilePage} 
-            addPost={props.store.addPost} 
-            updateNewPostText={props.store.updateNewPostText} 
-            rerenderEntireTree={props.store.rerenderEntireTree}
+            profilePage={props.state.profilePage} 
+            addPost={props.addPost} 
+            updateNewPostText={props.updateNewPostText} 
+            // rerenderEntireTree={props.rerenderEntireTree}
           />}/>
         <Route path="/news" element={ 
           <News />} />

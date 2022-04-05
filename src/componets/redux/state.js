@@ -1,10 +1,9 @@
-let rerenderEntireTree = () => {
 
-}
-export let store = {
+let store = {
 
   
-  state : {
+  
+  _state : {
 
     profilePage: {
       postsData:[
@@ -41,57 +40,61 @@ export let store = {
       ],
    },
 },
+_callSubscriber (){
+
+},
  getState(){
-   return this.state;
+
+   return this._state;
  },
+
  addPost ()  {
   
   let newPost = {
     id: 5,
-    message: this.newPostText,
+    message: this._state.profilePage.newPostText,
     likesCount:21,
   }
   
-  store.state.profilePage.postsData.push(newPost);
-  store.state.profilePage.newPostText = ' ';
+  this._state.profilePage.postsData.push(newPost);
+  this._state.profilePage.newPostText = ' ';
 
-  rerenderEntireTree(store.getState);
+  this._callSubscriber(this._state);
   
 },
 
 updateNewPostText(newText) {
+ 
+  this._state.profilePage.newPostText = newText;
   
-  store.state.profilePage.newPostText = newText;
-  
-  rerenderEntireTree(store.getState);
+  this._callSubscriber(this._state);
 },
 
 addMessage ()  {
 
   let newMessage = {
     id: 5,
-    message: this.messagesPage.newMessageText,
+    message: this._state.messagesPage.newMessageText,
   }
 
-  store.state.messagesPage.messagesData.push(newMessage);
-  store.state.messagesPage.newMessageText = '';
+  this._state.messagesPage.messagesData.push(newMessage);
+  this._state.messagesPage.newMessageText = '';
   
-  rerenderEntireTree(store.getState);
+  this._callSubscriber(this._state);
 },
 
 updateNewMessage (newText)  {
   
-  this.messagesPage.newMessageText = newText;
+  this._state.messagesPage.newMessageText = newText;
   
-  rerenderEntireTree(store.getState);
+  this._callSubscriber(this._state);
 },
 
 subscribe(observer) {
-  rerenderEntireTree = observer; //паттерн наблюдатель // publisher-subscriber
+  this._callSubscriber = observer; //паттерн наблюдатель // publisher-subscriber
 },
-
-
 }
 
+export default store;
 
 

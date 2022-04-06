@@ -1,8 +1,9 @@
+import dialogsReducer from "./dialogs-reducer";
+import profileReducer from "./profile-reducer";
+import sidebarReducer from "./sidebar-reducer";
+
 
 let store = {
-
-  
-  
   _state : {
 
     profilePage: {
@@ -24,7 +25,6 @@ let store = {
           { id: 5, name: "Anna", url: "https://media.istockphoto.com/vectors/pretty-girl-avatar-flat-cartoon-style-vector-illustration-vector-id1140166223?k=20&m=1140166223&s=170667a&w=0&h=wgeq7igZ8rP0WrzCBGJL70dLF9bPri1nrMXNerQ6kOA="},
           { id: 6, name: "Oleh", url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFGtUgLB8IdVBnpDGqfSpvwM_Fl6LOhjwnBw&usqp=CAU" },
         ],
-  
       messagesData:[
           { id: 1, message: "Hi, how are you ?" },
           { id: 2, message: "What's up ?" },
@@ -47,54 +47,21 @@ _callSubscriber (){
 
    return this._state;
  },
-
- addPost ()  {
-  
-  let newPost = {
-    id: 5,
-    message: this._state.profilePage.newPostText,
-    likesCount:21,
-  }
-  
-  this._state.profilePage.postsData.push(newPost);
-  this._state.profilePage.newPostText = ' ';
-
-  this._callSubscriber(this._state);
-  
+ subscribe(observer) {
+  this._callSubscriber = observer; //паттерн наблюдатель //publisher-subscriber
 },
-
-updateNewPostText(newText) {
- 
-  this._state.profilePage.newPostText = newText;
+dispatch(action){
+  this._state.profilePage = profileReducer(this._state.profilePage, action); // обновили state
+  this._state.messagesPage = dialogsReducer(this._state.messagesPage, action); // обновили state
+  this._state.sidebar = sidebarReducer(this._state.profilePage, action); // обновили state
   
   this._callSubscriber(this._state);
-},
-
-addMessage ()  {
-
-  let newMessage = {
-    id: 5,
-    message: this._state.messagesPage.newMessageText,
-  }
-
-  this._state.messagesPage.messagesData.push(newMessage);
-  this._state.messagesPage.newMessageText = '';
-  
-  this._callSubscriber(this._state);
-},
-
-updateNewMessage (newText)  {
-  
-  this._state.messagesPage.newMessageText = newText;
-  
-  this._callSubscriber(this._state);
-},
-
-subscribe(observer) {
-  this._callSubscriber = observer; //паттерн наблюдатель // publisher-subscriber
 },
 }
 
-export default store;
 
+export default store;
+window.store = store;
+
+//store - OPP
 

@@ -9,7 +9,7 @@ import Settings from "./componets/Settings/Settings";
 import { Routes, Route } from "react-router-dom";
 
 const App = (props) => {
-  
+
   return (
     <div className="app-wrapper">
      <Header />
@@ -19,16 +19,13 @@ const App = (props) => {
         <Route path="/dialogs" element={
            <Dialogs 
             messagesPage={props.state.messagesPage}
-            addMessage={props.addMessage}
-            updateNewMessage={props.updateNewMessage}
+            dispatch = {props.dispatch}
             newMessageText = {props.state.messagesPage.newMessageText}
             />}/>
         <Route path="/profile" element={ 
           <Profile 
             profilePage={props.state.profilePage} 
-            addPost={props.addPost} 
-            updateNewPostText={props.updateNewPostText} 
-            // rerenderEntireTree={props.rerenderEntireTree}
+            dispatch = {props.dispatch}
           />}/>
         <Route path="/news" element={ 
           <News />} />

@@ -7,32 +7,21 @@ import News from "./componets/News/News";
 import Music from "./componets/Music/Music";
 import Settings from "./componets/Settings/Settings";
 import { Routes, Route } from "react-router-dom";
+import DialogsContainer from "./componets/Dialogs/DialogsContainer";
 
 const App = (props) => {
-  
+ 
   return (
     <div className="app-wrapper">
      <Header />
      <Navbar state={props.state.sidebar}/>
      <div className="app-wrapper-content" >
       <Routes>
-        <Route path="/dialogs" element={
-           <Dialogs 
-            messagesPage={props.state.messagesPage}
-            dispatch = {props.dispatch}
-            newMessageText = {props.state.messagesPage.newMessageText}
-            />}/>
-        <Route path="/profile" element={ 
-          <Profile 
-            profilePage={props.state.profilePage} 
-            dispatch = {props.dispatch}
-          />}/>
-        <Route path="/news" element={ 
-          <News />} />
-        <Route path="/music" element={ 
-          <Music />} />
-        <Route path="/settings" element={ 
-          <Settings />} />
+        <Route path="/dialogs" element={<DialogsContainer store={props.store}/>}/>
+        <Route path="/profile" element={<Profile store={props.store}/>}/>
+        <Route path="/news" element={<News />} />
+        <Route path="/music" element={ <Music />} />
+        <Route path="/settings" element={ <Settings />} />
       </Routes>
      </div>
     </div> 

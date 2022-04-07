@@ -44,16 +44,16 @@ _callSubscriber (){
 
 },
  getState(){
-
    return this._state;
  },
  subscribe(observer) {
   this._callSubscriber = observer; //паттерн наблюдатель //publisher-subscriber
 },
 dispatch(action){
+  
   this._state.profilePage = profileReducer(this._state.profilePage, action); // обновили state
   this._state.messagesPage = dialogsReducer(this._state.messagesPage, action); // обновили state
-  // this._state.sidebar = sidebarReducer(this._state.profilePage, action); // обновили state
+  this._state.sidebar = sidebarReducer(this._state.sidebar, action); // обновили state
   
   this._callSubscriber(this._state);
 },

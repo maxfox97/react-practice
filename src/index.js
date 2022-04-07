@@ -1,5 +1,5 @@
 import "./index.css";
-import store from "./componets/redux/state"
+import store from "./componets/redux/store"
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
@@ -15,7 +15,6 @@ let rerenderEntireTree = (state) => {
         <App 
          state={state} 
          dispatch={store.dispatch.bind(store)}
-        
         />
       </BrowserRouter>
     </React.StrictMode>,

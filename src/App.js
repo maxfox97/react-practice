@@ -9,7 +9,7 @@ import Settings from "./componets/Settings/Settings";
 import { Routes, Route } from "react-router-dom";
 
 const App = (props) => {
-
+  
   return (
     <div className="app-wrapper">
      <Header />

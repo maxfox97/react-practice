@@ -6,6 +6,7 @@ import Friends from "../Friends/Friends";
 const setActiveStyle = ({ isActive }) => ({ color: isActive ? 'gold' : 'black' });
 
 const Navbar = (props) => {
+
   return (
     <nav className={s.nav}>
       <div className={s.item}>
@@ -29,7 +30,6 @@ const Navbar = (props) => {
           <span>Friends</span>
         </div>
         <Friends friendsData={props.state.friendsData} />
-
       </div>
     </nav >
   );

@@ -53,7 +53,7 @@ _callSubscriber (){
 dispatch(action){
   this._state.profilePage = profileReducer(this._state.profilePage, action); // обновили state
   this._state.messagesPage = dialogsReducer(this._state.messagesPage, action); // обновили state
-  this._state.sidebar = sidebarReducer(this._state.profilePage, action); // обновили state
+  // this._state.sidebar = sidebarReducer(this._state.profilePage, action); // обновили state
   
   this._callSubscriber(this._state);
 },

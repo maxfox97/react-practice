@@ -1,6 +1,8 @@
 import dialogsReducer from "./dialogs-reducer";
 import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import usersReducer from "./users-reducer";
+
 
 
 let store = {
@@ -39,6 +41,14 @@ let store = {
         {id: 3, name:"Sveta", url:"https://previews.123rf.com/images/artemstepanov/artemstepanov1606/artemstepanov160600062/57844959-vektor-weibliches-gesicht-avatar-schablone-piktogramm-taste-rund-trendy-flache-symbol-mit-frauen-f%C3%BCr.jpg"},
       ],
    },
+   users: {
+     usersData:[
+      {name:"Dmitri K.", loc: "Minsk,Belarus", message: "I'm looking for a job right now...", ava:"https://cdn2.vectorstock.com/i/1000x1000/38/31/male-face-avatar-logo-template-pictograph-vector-11333831.jpg",status:'Follow'},
+      {name:"Svetlana D.", loc: "Minsk,Belarus", message: "I'm so pretty", ava:"https://iconape.com/wp-content/png_logo_vector/avatar-11.png",status:'Follow'},
+      {name:"Sergei S.", loc: "Ukraine,Kiev", message: "I like footbal.", ava:"https://iconape.com/wp-content/png_logo_vector/avatar-4.png",status:'Unfollow'},
+      {name:"Andrew T.", loc: "United States,Philadelphia", message: "I am free to help you to creat good Video Production", ava:"https://i.pinimg.com/originals/8b/6e/c6/8b6ec60427f9b17c1d9aaf4c415babe3.png",status:'Unfollow'},
+     ]
+  }
 },
 _callSubscriber (){
 
@@ -50,10 +60,11 @@ _callSubscriber (){
   this._callSubscriber = observer; //паттерн наблюдатель //publisher-subscriber
 },
 dispatch(action){
-  
+  debugger
   this._state.profilePage = profileReducer(this._state.profilePage, action); // обновили state
   this._state.messagesPage = dialogsReducer(this._state.messagesPage, action); // обновили state
   this._state.sidebar = sidebarReducer(this._state.sidebar, action); // обновили state
+  this._state.users = usersReducer(this._state.users, action);
   
   this._callSubscriber(this._state);
 },

@@ -1,0 +1,95 @@
+.users {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+
+/* Avatar */
+.avaBlock {}
+
+.ava {
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #db48b1;
+  margin-bottom: 20px;
+}
+
+.ava img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+/* Button styles */
+.buttonUser {
+  display: inline-block;
+  border-radius: 2px;
+  background-color: #4CAF50;
+  ;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 15px 32px;
+  width: 200px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+.buttonUser span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.buttonUser span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.buttonUser:hover span {
+  padding-right: 25px;
+}
+
+.buttonUser:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+/* Info */
+.status {}
+
+.aboutUser {
+  background: #fff;
+  border-radius: 5px;
+  border: 2px solid gray;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.messageUser {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name {}
+
+.message {}
+
+.locationUser {}
+
+.loc {}

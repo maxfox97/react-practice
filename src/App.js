@@ -13,7 +13,7 @@ import UsersContainer from "./componets/Users/UsersContainer";
 
 let state = store.getState();
 
-const App = (props) => {
+const App = () => {
 
   return (
     <div className="app-wrapper">

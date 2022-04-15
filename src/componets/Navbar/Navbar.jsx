@@ -32,7 +32,7 @@ const Navbar = (props) => {
         <div className={s.itemFriends}>
           <span>Friends</span>
         </div>
-        <Friends friendsData={props.state.friendsData} />
+        {/* <Friends friendsData={props.state.friendsData} /> */}
       </div>
     </nav >
   );

@@ -11,14 +11,14 @@ import store from "./componets/redux/store";
 import UsersContainer from "./componets/Users/UsersContainer";
 
 
-let state = store.getState();
+// let state = store.getState();
 
 const App = () => {
 
   return (
     <div className="app-wrapper">
      <Header />
-     <Navbar state={state.sidebar}/>
+     <Navbar />
      <div className="app-wrapper-content" >
       <Routes>
         <Route path="/dialogs" element={<DialogsContainer />}/>

@@ -1,23 +1,26 @@
 .nav {
   grid-area: n;
-  background-color: rgb(137, 218, 218);
+  background-color: rgb(68, 170, 193);
 }
+
 .item {
   margin: 10px;
 }
-.item a{
-  color:white;
+
+.item a {
+  color: white;
   text-decoration: none;
 }
 
-.item  a.activeLink{
-  color:gold;
+.item a.activeLink {
+  color: gold;
 }
 
 .itemFriends {
   margin-top: 50px;
 }
+
 .itemFriends span {
   font-size: 30px;
-  color:#fff;
+  color: #fff;
 }

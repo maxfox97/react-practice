@@ -1,9 +1,9 @@
 .header {
-   grid-area: h;
-   background-color: rgb(247, 223, 143);
- }
- .header img {
-   height:40px;
-   margin: 10px 10px;
- }
- 
+  grid-area: h;
+  background-color: rgb(251, 208, 67);
+}
+
+.header img {
+  height: 40px;
+  margin: 10px 10px;
+}

@@ -7,3 +7,19 @@
   height: 40px;
   margin: 10px 10px;
 }
+
+.loginBlock {
+  float: right;
+  margin-right: 20px;
+
+}
+
+.loginBlock a {
+  color: white;
+  text-decoration: none;
+}
+
+.loginBlock a:hover {
+  color: red;
+  opacity: 50%;
+}

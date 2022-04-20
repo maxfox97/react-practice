@@ -12,6 +12,10 @@
   text-decoration: none;
 }
 
+.item a:hover {
+  color: #fff;
+}
+
 .item a.activeLink {
   color: gold;
 }

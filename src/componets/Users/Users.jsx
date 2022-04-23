@@ -14,6 +14,8 @@ let Users = (props) => {
         key={index} followed={el.followed} follow={props.follow}
         unfollow={props.unfollow} name={el.name} status={el.status}
         jobStatus={el.lookingForAJobDescription}
+        toggleFollowingProgress={props.toggleFollowingProgress}
+        followingInProgress={props.followingInProgress}
         ava={el.photos.small != null ? el.photos.small : userPhoto} id={el.id} />)
     return (
         <div>

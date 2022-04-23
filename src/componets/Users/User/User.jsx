@@ -1,6 +1,7 @@
 import s from "./User.module.css"
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { userFollow, userUnFollow } from "../../../api/api";
 
 
 let User = (props) => {
@@ -17,8 +18,38 @@ let User = (props) => {
                     <div>
                         <div>
                             {props.followed
-                                ? <button className={s.buttonUser} onClick={props.unfollow} ><span>Unfollow</span></button>
-                                : <button className={s.buttonUser} onClick={props.follow} ><span>Follow</span></button>
+                                ? <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={() => {
+
+                                    props.toggleFollowingProgress(true, props.id)
+                                    userUnFollow.unFollow(props.id)
+                                        .then(response => {
+
+                                            if (response.resultCode === 0) {
+                                                props.unfollow(props.id)
+                                            }
+                                            props.toggleFollowingProgress(false, props.id)
+                                        });
+
+
+
+
+                                }} >
+                                    <span>Unfollow</span>
+                                </button>
+                                : <button disabled={props.followingInProgress.some(id => id === props.id)} onClick={() => {
+
+                                    props.toggleFollowingProgress(true, props.id)
+                                    userFollow.follow(props.id)
+                                        .then(response => {
+
+                                            if (response.resultCode === 0) {
+                                                props.follow(props.id)
+                                            }
+                                            props.toggleFollowingProgress(false, props.id)
+                                        });
+                                }} >
+                                    <span>Follow</span>
+                                </button>
                             }
                         </div>
                     </div>
@@ -34,7 +65,7 @@ let User = (props) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 

@@ -5,6 +5,10 @@ const ProfileInfo = (props) => {
   if (!props.profile) {
     return <Preloader />
   }
+  if (props.profile.photos.large === null) {
+    props.profile.photos.large = 'https://gavrila-alandala.ro/wp-content/uploads/2019/10/joker-4.jpg'
+  }
+
   return (
     <div className={s.profileInfoBlock}>
       <div className={s.profileImg}>

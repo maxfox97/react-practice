@@ -14,29 +14,33 @@ export const usersAPI =  {
         
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
          .then(response => {
-            
             return response.data;
      })
-    }
-}
-
-
-
-export const userUnFollow =  {
-    unFollow(userId) {   
+    },
+    unFollowUser(userId) { 
         return instance.delete(`follow/${userId}`)
-         .then(response => {
-           return response.data
-     })
+            .then(response => {
+                return response.data
+            })
+    },
+    followUser(userId) {
+        return instance.post(`follow/${userId}`)
+        .then(response => {
+            return response.data
+        })
+    },
+    getProfile(userId){
+        return instance.get(`profile/${userId}`)
     }
 }
 
 
-export const userFollow =  {
-    follow(userId) {
-        return instance.post(`follow/${userId}`)
-         .then(response => {
+
+export const authAPI = {
+    me() {
+        return instance.get(`auth/me`)
+        .then(response => {
             return response.data
-     })
+        })
     }
 }

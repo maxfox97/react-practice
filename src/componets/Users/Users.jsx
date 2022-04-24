@@ -16,6 +16,7 @@ let Users = (props) => {
         jobStatus={el.lookingForAJobDescription}
         toggleFollowingProgress={props.toggleFollowingProgress}
         followingInProgress={props.followingInProgress}
+        followThunk={props.followThunk} unFollowThunk={props.unFollowThunk}
         ava={el.photos.small != null ? el.photos.small : userPhoto} id={el.id} />)
     return (
         <div>

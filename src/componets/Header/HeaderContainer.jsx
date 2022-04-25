@@ -1,9 +1,8 @@
-import axios from 'axios';
 import Header from './Header';
 import React from 'react';
 import { getAuthUserDataThunk } from '../redux/auth-reducer'
 import { connect } from 'react-redux';
-import { usersAPI } from '../../api/api';
+
 
 
 
@@ -23,5 +22,7 @@ const mapStateToProps = (state) => ({
    login: state.auth.login,
    email: state.auth.email,
 })
+
+
 
 export default connect(mapStateToProps, { getAuthUserDataThunk })(HeaderContainer);

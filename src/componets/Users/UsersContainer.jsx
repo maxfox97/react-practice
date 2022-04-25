@@ -1,8 +1,10 @@
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 import { getUsers, follow, setCurrentPage, unfollow, toggleFollowingProgress, followThunk, unFollowThunk } from "../redux/users-reducer";
 import Users from './Users';
 import React from 'react';
 import Preloader from "../common/preloader/preloader";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 
 
@@ -15,26 +17,20 @@ class UsersContainer extends React.Component {
         this.props.getUsers(this.props.currentPage, this.props.pageSize);
 
     }
-
     onPageChanged = (pageNumber) => {
 
         this.props.getUsers(pageNumber, this.props.pageSize);
 
     }
-
     follow = () => {
 
         this.props.follow(this.props.users.id)
     };
-
     unfollow = () => {
 
         this.props.unfollow(this.props.users.id)
     };
-
-
     render() {
-
         return <>
 
             {this.props.isFetching ? <Preloader /> : null}
@@ -58,12 +54,15 @@ let matStateToProps = (state) => {
     }
 };
 
+// let MyUsersContainer = withAuthRedirect(connect(matStateToProps, {
+//     follow, unfollow, setCurrentPage,
+//     toggleFollowingProgress, getUsers, followThunk, unFollowThunk
+// })(UsersContainer));
 
-let MyUsersContainer = connect(matStateToProps, {
-    follow, unfollow, setCurrentPage,
-    toggleFollowingProgress, getUsers, followThunk, unFollowThunk
-})(UsersContainer);
-
-
-
-export default MyUsersContainer;
+export default compose(
+    connect(matStateToProps, {
+        follow, unfollow, setCurrentPage,
+        toggleFollowingProgress, getUsers, followThunk, unFollowThunk
+    }),
+    withAuthRedirect
+)(UsersContainer)

@@ -1,5 +1,7 @@
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/preloader/preloader"
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
+
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -9,11 +11,12 @@ const ProfileInfo = (props) => {
     props.profile.photos.large = 'https://gavrila-alandala.ro/wp-content/uploads/2019/10/joker-4.jpg'
   }
 
+
   return (
     <div className={s.profileInfoBlock}>
-      <div className={s.profileImg}>
+      {/* <div className={s.profileImg}>
         <img src="https://coreteka.com/wp-content/uploads/2020/08/difference-between-ux-ui-ux-ui-coreteka.png"></img>
-      </div>
+      </div> */}
       <div>
         <img src={props.profile.photos.large} />
         <br />
@@ -23,7 +26,7 @@ const ProfileInfo = (props) => {
         <br />
         <span>{props.profile.userId}</span>
         <br />
-        Ava + description
+        <ProfileStatus />
       </div>
     </div>
   );

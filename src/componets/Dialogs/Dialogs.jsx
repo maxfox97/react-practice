@@ -2,22 +2,14 @@ import DialogItem from "./DialogItem/DialogItem";
 import s from "./Dialogs.module.css"
 import Message from "./Message/Message";
 import React from "react";
+import { Navigate } from "react-router-dom";
 
 
 
 const Dialogs = (props) => {
 
-    const dialogsElements = props.messagesPage.dialogsData.map(d => <DialogItem
-        name={d.name}
-        key={d.id}
-        id={d.id}
-        url={d.url}
-    />);
-    const messagesElements = props.messagesPage.messagesData.map(m => <Message
-        key={m.id}
-        id={m.id}
-        message={m.message}
-    />);
+    const dialogsElements = props.messagesPage.dialogsData.map(d => <DialogItem name={d.name} key={d.id} id={d.id} url={d.url} />);
+    const messagesElements = props.messagesPage.messagesData.map(m => <Message key={m.id} id={m.id} message={m.message} />);
 
     let newMessageElement = React.createRef();
 
@@ -30,6 +22,8 @@ const Dialogs = (props) => {
         let message = newMessageElement.current.value;
         props.onMessageChange(message)
     }
+
+
 
     return (
         <div className={s.dialogs}>

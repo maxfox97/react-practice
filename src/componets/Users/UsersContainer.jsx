@@ -54,11 +54,6 @@ let matStateToProps = (state) => {
     }
 };
 
-// let MyUsersContainer = withAuthRedirect(connect(matStateToProps, {
-//     follow, unfollow, setCurrentPage,
-//     toggleFollowingProgress, getUsers, followThunk, unFollowThunk
-// })(UsersContainer));
-
 export default compose(
     connect(matStateToProps, {
         follow, unfollow, setCurrentPage,

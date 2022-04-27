@@ -77,7 +77,7 @@ const usersReducer = (state = initialState,action ) => {
    }
 }
 
-export const follow = (userId) => ({type: FOLLOW, userId});
+export const follow = (userId) => ({type: FOLLOW, userId}); //ACTION CREATORS
 export const unfollow = (userId) => ({type: UNFOLLOW, userId});
 export const setUsers = (users) => ({type: SET_USERS, users})
 export const setCurrentPage = (currentPage) => ({type: SET_CURRENT_PAGE, currentPage})
@@ -109,7 +109,6 @@ export const followThunk = (userId) => {
       dispatch(toggleFollowingProgress(true, userId));
       usersAPI.followUser(userId)
           .then(response => {
-
               if (response.resultCode === 0) {
                   dispatch(follow(userId))
               }

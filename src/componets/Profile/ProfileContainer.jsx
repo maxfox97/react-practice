@@ -1,33 +1,36 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { setUserProfileThunk } from '../redux/profile-reducer'
+import { setUserProfileThunk, getStatus, updateStatus } from '../redux/profile-reducer'
 import Profile from './Profile';
 import { useParams } from 'react-router-dom';
-import { withAuthRedirect } from '../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 let ProfileContainer = (props) => {
+
+
   let { userId } = useParams();
+
   useEffect(() => {
     if (userId === undefined) {
-      userId = 2;
-
+      userId = 23398;
     }
     props.setUserProfileThunk(userId);
+
+    props.getStatus(userId);
+
   }, []);
   return (
-    <Profile  {...props} profile={props.profile} />
+    <Profile  {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
   )
 }
 
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  status: state.profilePage.status,
 })
 
-//withAuthRedirect(connect(mapStateToProps, { setUserProfileThunk })(ProfileContainer));
 
 export default compose(
-  connect(mapStateToProps, { setUserProfileThunk }),
-  //withAuthRedirect
+  connect(mapStateToProps, { setUserProfileThunk, getStatus, updateStatus }),
 )(ProfileContainer);
 

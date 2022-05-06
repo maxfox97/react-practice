@@ -4,15 +4,21 @@ import { setUserProfileThunk, getStatus, updateStatus } from '../redux/profile-r
 import Profile from './Profile';
 import { useParams } from 'react-router-dom';
 import { compose } from 'redux';
+import { useNavigate } from 'react-router-dom';
+
 
 let ProfileContainer = (props) => {
 
 
   let { userId } = useParams();
-
+  let navigate = useNavigate();
   useEffect(() => {
-    if (userId === undefined) {
-      userId = 23398;
+    if (!userId) {
+      userId = props.authorisedUserId;
+      // userId = 23398;
+      if (!userId) {
+        navigate("/login");
+      }
     }
     props.setUserProfileThunk(userId);
 
@@ -20,13 +26,20 @@ let ProfileContainer = (props) => {
 
   }, []);
   return (
-    <Profile  {...props} profile={props.profile} status={props.status} updateStatus={props.updateStatus} />
+    <Profile
+      {...props}
+      profile={props.profile}
+      status={props.status}
+      updateStatus={props.updateStatus} />
   )
 }
 
 let mapStateToProps = (state) => ({
+
   profile: state.profilePage.profile,
   status: state.profilePage.status,
+  authorisedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth,
 })
 
 

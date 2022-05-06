@@ -1,6 +1,6 @@
 .nav {
   grid-area: n;
-  background-color: rgb(68, 170, 193);
+  background-color: rgb(58, 58, 58);
 }
 
 .item {
@@ -10,6 +10,7 @@
 .item a {
   color: white;
   text-decoration: none;
+
 }
 
 .item a:hover {

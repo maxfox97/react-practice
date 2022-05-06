@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import Friends from "../Friends/Friends";
 
 // const setActive = ({ isActive }) => isActive ? "activeLink" : "";
-const setActiveStyle = ({ isActive }) => ({ color: isActive ? 'gold' : 'black' });
+const setActiveStyle = ({ isActive }) => ({ color: isActive ? 'gold' : 'white' });
 
 const Navbar = (props) => {
 

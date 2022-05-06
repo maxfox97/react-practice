@@ -1,3 +1,15 @@
 .posts {
     margin: 10px 10px;
 }
+
+label span {
+    color: whitesmoke;
+}
+
+h3 {
+    color: orange;
+}
+
+span {
+    color: rgb(62, 188, 190);
+}

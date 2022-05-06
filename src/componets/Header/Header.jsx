@@ -7,7 +7,8 @@ const Header = (props) => {
       <header className={s.header} >
          <img src="https://uxwing.com/wp-content/themes/uxwing/download/36-arts-graphic-shapes/mobile-ui-ux.png"></img>
          <div className={s.loginBlock}>
-            {props.isAuth ? props.login
+            {props.isAuth
+               ? <div>{props.login} - <button onClick={props.logout}>Logout</button></div>
                : <NavLink to={'/Login'}>Login</NavLink>
             }
          </div>

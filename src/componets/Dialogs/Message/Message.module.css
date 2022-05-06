@@ -1,6 +1,8 @@
 .message {
     margin-top: 25px;
+    color: rgb(73, 220, 240);
 }
+
 .message img {
     height: 30px;
     width: 30px;

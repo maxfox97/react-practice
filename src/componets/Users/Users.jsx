@@ -1,8 +1,9 @@
 import s from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png"
 import User from "./User/User";
+import Paginator from "../common/preloader/Paginator/Paginator";
 
-let Users = (props) => {
+let Users = ({ users, onPageChanged, currentPage, ...props }) => {
 
     let pages = [];
 
@@ -10,7 +11,7 @@ let Users = (props) => {
         pages.push(i)
     }
 
-    let usersElements = props.users.map((el, index) => <User
+    let usersElements = users.map((el, index) => <User
         key={index} followed={el.followed} follow={props.follow}
         unfollow={props.unfollow} name={el.name} status={el.status}
         jobStatus={el.lookingForAJobDescription}
@@ -18,19 +19,19 @@ let Users = (props) => {
         followingInProgress={props.followingInProgress}
         followThunk={props.followThunk} unFollowThunk={props.unFollowThunk}
         ava={el.photos.small != null ? el.photos.small : userPhoto} id={el.id} />)
+
     return (
         <div>
-            <div className={s.menuPages}>
-                {pages.map((p, index) => {
-                    return (
-                        <span key={index} className={(props.currentPage === p && s.selectedPage).toString()} onClick={(e) => { props.onPageChanged(p) }}  >{p}</span>
-                    )
-                })}
-            </div>
+            <Paginator pages={pages} currentPage={currentPage} onPageChanged={onPageChanged} />
+
             <div className={s.userTitle}>Users</div>
             {usersElements}
             <div className={s.blockButton}>
-                <div className={s.button} ><span>Show Users</span></div>
+                <div className={s.button} >
+                    <span>
+                        Show Users
+                    </span>
+                </div>
             </div>
         </div>
     )

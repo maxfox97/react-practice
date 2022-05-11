@@ -1,28 +1,29 @@
 import s from "./ProfileInfo.module.css";
 import Preloader from "../../common/preloader/preloader"
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
+import ProfileStatusWithHooks from "../ProfileStatus/ProfileStatusWithHooks";
 
 
-const ProfileInfo = (props) => {
-  if (!props.profile) {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
+  if (!profile) {
     return <Preloader />
   }
-  if (props.profile.photos.large === null) {
-    props.profile.photos.large = 'https://gavrila-alandala.ro/wp-content/uploads/2019/10/joker-4.jpg'
+  if (profile.photos.large === null) {
+    profile.photos.large = 'https://gavrila-alandala.ro/wp-content/uploads/2019/10/joker-4.jpg'
   }
 
   return (
     <div className={s.profileInfoBlock}>
       <div>
-        <img src={props.profile.photos.large} />
+        <img src={profile.photos.large} />
         <br />
-        <span>{props.profile.aboutMe}</span>
+        <span>{profile.aboutMe}</span>
         <br />
-        <span>{props.profile.fullName}</span>
+        <span>{profile.fullName}</span>
         <br />
-        <span>{props.profile.userId}</span>
+        <span>{profile.userId}</span>
         <br />
-        <ProfileStatus status={props.status} updateStatus={props.updateStatus} />
+        <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
       </div>
     </div>
   );

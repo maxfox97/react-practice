@@ -6,20 +6,20 @@ import { Navigate } from "react-router-dom";
 //import s from './Login.module.css';  //style react - hook - form
 
 
-const Login = (props) => {
+const Login = ({ isAuth, login }) => {
 
 
-    if (props.isAuth) {
+    if (isAuth) {
         return <Navigate replace to={"/profile"} />
     }
 
     return <div>
         <h1>login</h1>
-        <LoginForm login={props.login} />
+        <LoginForm login={login} />
     </div>
 }
 
-const LoginForm = (props) => {
+const LoginForm = ({ login, }) => {
     const {
         register,
         formState: { errors, isValid },
@@ -31,7 +31,7 @@ const LoginForm = (props) => {
 
     const onSubmit = (data) => {
         console.log(data);
-        props.login(data.email, data.password, data.rememberMe);
+        login(data.email, data.password, data.rememberMe);
         reset();
 
     }

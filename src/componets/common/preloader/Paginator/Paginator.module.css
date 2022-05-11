@@ -1,0 +1,17 @@
+.selectedPage {
+    font-weight: bold;
+    color: red;
+}
+
+.menuPages {
+    display: flex;
+    flex-direction: row;
+}
+
+.menuPages span {
+    margin: 5px;
+}
+
+.menuPages :hover {
+    cursor: pointer;
+}

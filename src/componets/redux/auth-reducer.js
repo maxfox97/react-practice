@@ -1,6 +1,6 @@
 import { authAPI} from '../../api/api';
 
-const SET_USER_DATA = "SET_USER_DATA";
+const SET_USER_DATA = "samurai-network/auth/SET_USER_DATA";
 
 let initialState = {
    userId: null,
@@ -30,36 +30,33 @@ export const setAuthUserData = (userId, email, login, isAuth) => ({
    payload:{userId,email,login, isAuth}
 });
 
-export const getAuthUserData = () => (dispatch) => {
-   return authAPI.me()
-      .then(response => {
-         if (response.data.resultCode === 0) {
-            let {id, login, email} = response.data.data;
-            dispatch(setAuthUserData(id, email, login, true));
-         }
-      })
+export const getAuthUserData = () => async (dispatch) => {
+  const response = await authAPI.me();
+  
+  if (response.data.resultCode === 0) {
+      let {id, login, email} = response.data.data;
+      dispatch(setAuthUserData(id, email, login, true));
+   };
+
 }
 
 
 
-export const login = (email,password, rememberMe) =>(dispatch) => {  //THUNK CREATOR
-     
-   authAPI.login(email,password, rememberMe)
-         .then(response => {
-            if (response.resultCode === 0) {
-            dispatch(getAuthUserData())
-         }
-      });
+export const login = (email,password, rememberMe) =>async (dispatch) => {  //THUNK CREATOR
+   const response =  await authAPI.login(email,password, rememberMe);    
+   
+   if (response.resultCode === 0) {
+      dispatch(getAuthUserData())
+   }
 }
 
 
-export const logout = () =>(dispatch) => {  //THUNK CREATOR
-   authAPI.logout()
-      .then(response => {
-         if (response.resultCode === 0) {
-         dispatch(getAuthUserData(null, null, null, false))
-      }
-   });
+export const logout = () =>async (dispatch) => {  //THUNK CREATOR
+  const response =  authAPI.logout();
+   
+  if (response.resultCode === 0) {
+      dispatch(getAuthUserData(null, null, null, false))
+   }
 }
 
 

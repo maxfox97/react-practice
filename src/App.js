@@ -3,7 +3,7 @@ import Navbar from "./componets/Navbar/Navbar";
 import News from "./componets/News/News";
 import Music from "./componets/Music/Music";
 import Settings from "./componets/Settings/Settings";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 import DialogsContainer from "./componets/Dialogs/DialogsContainer";
 import UsersContainer from "./componets/Users/UsersContainer";
 import ProfileContainer from "./componets/Profile/ProfileContainer";
@@ -13,8 +13,10 @@ import { Component } from "react";
 import { initializeApp} from './componets/redux/app-reducer'
 import { connect } from 'react-redux';
 import Preloader from "./componets/common/preloader/preloader";
- 
 
+import { Provider } from "react-redux";
+
+import store from './componets/redux/redux-store'
 
 class App extends Component {
   componentDidMount() {
@@ -51,4 +53,14 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default  connect(mapStateToProps, { initializeApp})(App);;
+let AppContainer =  connect(mapStateToProps, { initializeApp})(App);;
+
+ const MainApp = (props) => {
+ return <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+      </BrowserRouter>
+}
+
+export default MainApp;

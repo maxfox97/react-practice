@@ -3,13 +3,9 @@ import userPhoto from "../../assets/images/user.png"
 import User from "./User/User";
 import Paginator from "../common/preloader/Paginator/Paginator";
 
-let Users = ({ users, onPageChanged, currentPage, ...props }) => {
+let Users = ({ users, onPageChanged, currentPage, totalItemsCount, pageSize, ...props }) => {
 
-    let pages = [];
 
-    for (let i = 1; pages.length < 10; i++) {
-        pages.push(i)
-    }
 
     let usersElements = users.map((el, index) => <User
         key={index} followed={el.followed} follow={props.follow}
@@ -22,7 +18,9 @@ let Users = ({ users, onPageChanged, currentPage, ...props }) => {
 
     return (
         <div>
-            <Paginator pages={pages} currentPage={currentPage} onPageChanged={onPageChanged} />
+            <Paginator currentPage={currentPage} onPageChanged={onPageChanged}
+                totalItemsCount={totalItemsCount} pageSize={pageSize}
+            />
 
             <div className={s.userTitle}>Users</div>
             {usersElements}

@@ -13,7 +13,7 @@ const TOGGLE_IS_FOLLLOWING_PROGRESS = "TOGGLE_IS_FOLLLOWING_PROGRESS";
 
 let initialState = {
    users: [],
-   pageSize:3,
+   pageSize:10,
    totalUsersCount: 0,
    currentPage: 1,
    isFetching: false,

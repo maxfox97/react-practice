@@ -3,7 +3,7 @@ import Navbar from "./componets/Navbar/Navbar";
 import News from "./componets/News/News";
 import Music from "./componets/Music/Music";
 import Settings from "./componets/Settings/Settings";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, BrowserRouter, HashRouter } from "react-router-dom";
 import UsersContainer from "./componets/Users/UsersContainer";
 import HeaderContainer from "./componets/Header/HeaderContainer";
 import LoginPage from "./componets/Login/Login";
@@ -32,6 +32,7 @@ class App extends Component {
           <Navbar />
           <div className="app-wrapper-content" >
           <Suspense fallback={<div>DOWNLOAD...</div>}>
+
             <Routes>
               <Route path="/" element={<ProfileContainer />} />
               <Route path="/dialogs" element={
@@ -62,11 +63,12 @@ const mapStateToProps = (state) => ({
 let AppContainer =  connect(mapStateToProps, { initializeApp})(App);;
 
  const MainApp = (props) => {
- return <BrowserRouter>
+   
+ return <HashRouter >
       <Provider store={store}>
         <AppContainer />
       </Provider>
-      </BrowserRouter>
+      </HashRouter>
 }
 
 export default MainApp;
